@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" defer></script>
+    <title>Etch A Sketch</title>
+  </head>
+  <body>
+    <main id="sketch-panel-container">
+      <div id="sketch-panel"></div>
+    </main>
+  </body>
+  <script>
+    const PANEL_SIZE = 800;
+    const cellsBySide = 16;
+
+    renderSketchPanel();
+    renderCells(16 * 16, getCellSize(cellsBySide));
+
+    function renderSketchPanel(size = 800) {
+      const sketchPanelContainer = document.getElementById(
+        'sketch-panel-container'
+      );
+
+      const sketchPanel = createSquareDiv(size);
+      sketchPanel.setAttribute('id', 'sketchPanel');
+      sketchPanelContainer.appendChild(sketchPanel);
+    }
+
+    function renderCells(numberOfCells, cellSize) {
+      const sketchPanel = document.getElementById('sketch-panel');
+      for (let i = 0; i < numberOfCells; i++) {
+        const cell = createSquareDiv(cellSize);
+        cell.classList.add('pixel');
+        sketchPanel.appendChild(cell);
+      }
+    }
+
+    function createSquareDiv(size) {
+      const div = document.createElement('div');
+      div.style.width = size;
+      div.style.height = size;
+      return div;
+    }
+
+    function getCellSize(cellCount) {
+      return PANEL_SIZE / cellCount + 'px';
+    }
+  </script>
+</html>
