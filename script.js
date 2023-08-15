@@ -1,8 +1,6 @@
-const PANEL_SIZE = 800;
+const PANEL_SIZE = 500;
 const MAX_CELLS_BY_SIDE = 100;
 const DEFAULT_CELLS_BY_SIDE = 16;
-
-let cellColorIndex = 0; //Points at what color to render on the cell out of the COLORS
 const COLORS = [
   '#F60000',
   '#FF8C00',
@@ -11,6 +9,8 @@ const COLORS = [
   '#3783FF',
   '#4815AA',
 ];
+
+let cellColorIndex = 0; //Points at what color to render on the cell out of the COLORS
 
 renderSketchPanel();
 const cellsBySide = getCellCountsOfSide();
@@ -43,7 +43,7 @@ function renderSketchPanel() {
   );
 
   const sketchPanel = createSquareDiv(PANEL_SIZE);
-  sketchPanel.setAttribute('id', 'sketchPanel');
+  sketchPanel.setAttribute('id', 'sketch-panel');
   sketchPanelContainer.appendChild(sketchPanel);
 }
 
@@ -70,6 +70,7 @@ function renderCells(numberOfCells, cellSize) {
  */
 function createSquareDiv(size) {
   const div = document.createElement('div');
+  size = size + 'px';
   div.style.width = size;
   div.style.height = size;
   return div;
@@ -81,7 +82,7 @@ function createSquareDiv(size) {
  * @returns {String}
  */
 function getCellSize(cellCount) {
-  return PANEL_SIZE / cellCount + 'px';
+  return PANEL_SIZE / cellCount;
 }
 
 /**
