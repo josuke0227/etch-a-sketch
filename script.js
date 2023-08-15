@@ -16,6 +16,10 @@ renderSketchPanel();
 const cellsBySide = getCellCountsOfSide();
 renderCells(cellsBySide * cellsBySide, getCellSize(cellsBySide));
 
+/**
+ *
+ * @returns {Number}
+ */
 function getCellCountsOfSide() {
   let numberOfCells;
   do {
@@ -30,6 +34,9 @@ function getCellCountsOfSide() {
   return numberOfCells;
 }
 
+/**
+ * @returns {void}
+ */
 function renderSketchPanel() {
   const sketchPanelContainer = document.getElementById(
     'sketch-panel-container'
@@ -40,16 +47,27 @@ function renderSketchPanel() {
   sketchPanelContainer.appendChild(sketchPanel);
 }
 
+/**
+ *
+ * @param {Number} numberOfCells
+ * @param {Number} cellSize
+ * @returns {void}
+ */
 function renderCells(numberOfCells, cellSize) {
   const sketchPanel = document.getElementById('sketch-panel');
   for (let i = 0; i < numberOfCells; i++) {
     const cell = createSquareDiv(cellSize);
-    cell.addEventListener('mouseover', (e) => changeCellColor(e.target));
+    cell.addEventListener('mouseover', (e) => handleMouseOver(e.target));
     cell.classList.add('pixel');
     sketchPanel.appendChild(cell);
   }
 }
 
+/**
+ *
+ * @param {Number} size
+ * @returns {HTMLElement}
+ */
 function createSquareDiv(size) {
   const div = document.createElement('div');
   div.style.width = size;
@@ -57,11 +75,21 @@ function createSquareDiv(size) {
   return div;
 }
 
+/**
+ *
+ * @param {Number} cellCount
+ * @returns {String}
+ */
 function getCellSize(cellCount) {
   return PANEL_SIZE / cellCount + 'px';
 }
 
-function changeCellColor(cellElement) {
+/**
+ *
+ * @param {HTMLElement} cellElement
+ * @returns {void}
+ */
+function handleMouseOver(cellElement) {
   if (COLORS.length === cellColorIndex) {
     cellColorIndex = 0;
   }
