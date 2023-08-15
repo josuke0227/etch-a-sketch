@@ -58,7 +58,7 @@ function renderCells(numberOfCells, cellSize) {
   for (let i = 0; i < numberOfCells; i++) {
     const cell = createSquareDiv(cellSize);
     cell.addEventListener('mouseover', (e) => handleMouseOver(e.target));
-    cell.classList.add('pixel');
+    cell.classList.add('cell');
     sketchPanel.appendChild(cell);
   }
 }
